@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "gradle",
+			"id": "c:\\Users\\Emilb\\OneDrive\\Skrivebord\\Dev\\2D-Gamelwjgl3:runlwjgl3",
+			"script": "lwjgl3:run",
+			"description": "Runs this project as a JVM application",
+			"group": "application",
+			"project": "lwjgl3",
+			"buildFile": "C:\\Users\\Emilb\\OneDrive\\Skrivebord\\Dev\\2D-Game\\lwjgl3\\build.gradle",
+			"rootProject": "2D-Game",
+			"projectFolder": "c:\\Users\\Emilb\\OneDrive\\Skrivebord\\Dev\\2D-Game",
+			"workspaceFolder": "c:\\Users\\Emilb\\OneDrive\\Skrivebord\\Dev\\2D-Game",
+			"args": "",
+			"javaDebug": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"label": "gradle: lwjgl3:run"
+		}
+	]
+}

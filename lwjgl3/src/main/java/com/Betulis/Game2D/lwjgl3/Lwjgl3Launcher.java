@@ -1,8 +1,8 @@
 package com.Betulis.Game2D.lwjgl3;
 
+import com.Betulis.Game2D.Main;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.Betulis.Game2D.Main;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {

@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Lwjgl3Launcher",
+      "request": "launch",
+      "mainClass": "com.Betulis.Game2D.lwjgl3.Lwjgl3Launcher",
+      "projectName": "2D-Game-lwjgl3"
+    },
+    {
+      "name": "Run libGDX Desktop (Gradle)",
+      "type": "java",
+      "request": "launch",
+      "mainClass": "com.Betulis.Game2D.lwjgl3.Lwjgl3Launcher",
+      "projectName": "libjgl",
+      "console": "integratedTerminal",
+      "preLaunchTask": "gradle: libjgl3:run"
+    }
+  ]
+}

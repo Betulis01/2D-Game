@@ -28,6 +28,7 @@ if (JavaVersion.current().isJava9Compatible()) {
 }
 
 dependencies {
+  implementation project(":core")
   implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
   implementation "com.badlogicgames.gdx:gdx-lwjgl3-angle:$gdxVersion"
   implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
@@ -177,4 +178,9 @@ startScripts.classpath = project.tasks.jar.outputs.files
 
 if(enableGraalNative == 'true') {
   apply from: file("nativeimage.gradle")
+}
+
+
+application {
+  mainClass = "com.Betulis.Game2D.lwjgl3.Lwjgl3Launcher"
 }

@@ -25,7 +25,7 @@ public abstract class Scene {
         obj.destroy();
         objects.remove(obj);
     }
-
+    /* RENDER AND UPDATE */
     public void render(SpriteBatch batch) {
         for (GameObject obj : objects) {
             obj.render(batch);
@@ -36,6 +36,20 @@ public abstract class Scene {
         for (GameObject obj : objects) {
             obj.update(dt);
         }
+    }
+
+    /* ADD AND REMOVE */
+
+    public void addObject(GameObject obj) {
+        if (objects.contains(obj)) return;
+
+        obj.setScene(this);
+        objects.add(obj);
+    }
+
+    public void removeObject(GameObject obj) {
+        if (!objects.contains(obj)) return;
+        objects.remove(obj);
     }
 
     /* APIs */

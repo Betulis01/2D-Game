@@ -1,4 +1,4 @@
-package com.Betulis.Game2D.core;
+package com.Betulis.Game2D.engine;
 
 import com.Betulis.Game2D.game.DeathValley;
 import com.badlogic.gdx.ApplicationAdapter;

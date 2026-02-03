@@ -1,4 +1,4 @@
-package com.Betulis.Game2D.core;
+package com.Betulis.Game2D.engine;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

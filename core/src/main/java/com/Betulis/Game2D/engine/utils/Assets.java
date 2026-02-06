@@ -8,9 +8,11 @@ public class Assets {
 
     // Define constants for paths to avoid typos
     public static final String orc_sheet = "player/orc8.png";
+    public static final String slime_sheet = "mob/slime.png";
 
     public void load() {
         manager.load(orc_sheet, Texture.class);
+        manager.load(slime_sheet, Texture.class);
         // Add more assets here
         
         manager.finishLoading(); // Blocks until everything is loaded

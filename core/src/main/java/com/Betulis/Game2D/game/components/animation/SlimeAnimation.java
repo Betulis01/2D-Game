@@ -1,7 +1,8 @@
-package com.Betulis.Game2D.engine.animation;
+package com.Betulis.Game2D.game.components.animation;
 
 import com.Betulis.Game2D.engine.utils.SpriteSheetSlicer;
 import com.Betulis.Game2D.game.components.movement.Movement;
+import com.Betulis.Game2D.engine.animation.AnimationDirector;
 import com.Betulis.Game2D.engine.math.Vector2;
 import com.Betulis.Game2D.engine.system.Component;
 

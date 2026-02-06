@@ -56,7 +56,7 @@ public class Game extends ApplicationAdapter {
 
     @Override
     public void render() {
-        ScreenUtils.clear(0, 0, 0, 1);
+        ScreenUtils.clear(1, 1, 1, 1);
         fps = Gdx.graphics.getFramesPerSecond();
         float dt = Gdx.graphics.getDeltaTime();
         

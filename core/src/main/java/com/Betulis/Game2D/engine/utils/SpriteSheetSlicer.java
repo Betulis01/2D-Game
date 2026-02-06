@@ -61,9 +61,4 @@ public final class SpriteSheetSlicer {
     public int getFrameHeight() {
         return frameHeight;
     }
-
-    /** Dispose the underlying Texture when you no longer need this sheet. */
-    public void dispose() {
-        spriteSheet.dispose();
-    }
 }

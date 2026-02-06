@@ -29,7 +29,6 @@ public class Camera extends Component {
     }
 
     /* WORLD CLAMP */
-
     public void setWorldBounds(float width, float height) {
         this.worldWidth = width;
         this.worldHeight = height;
@@ -85,13 +84,11 @@ public class Camera extends Component {
             nextY = clamp(nextY, halfH, worldHeight - halfH);
         }
 
-        // 5. Update the Camera Transform
         transform.setPosition(nextX, nextY);
     }
 
 
     /* VIEW RECT */
-
     private final AABB viewBounds = new AABB(0,0,0,0);
 
     public AABB getViewBounds() {

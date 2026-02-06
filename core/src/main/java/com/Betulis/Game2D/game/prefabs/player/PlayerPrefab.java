@@ -3,11 +3,11 @@ package com.Betulis.Game2D.game.prefabs.player;
 import com.Betulis.Game2D.engine.animation.AnimationClip;
 import com.Betulis.Game2D.engine.animation.AnimationDirector;
 import com.Betulis.Game2D.engine.animation.AnimationUpdater;
-import com.Betulis.Game2D.engine.animation.PlayerAnimation;
 import com.Betulis.Game2D.engine.render.SpriteRenderer;
 import com.Betulis.Game2D.engine.system.GameObject;
 import com.Betulis.Game2D.engine.system.Transform;
 import com.Betulis.Game2D.engine.utils.SpriteSheetSlicer;
+import com.Betulis.Game2D.game.components.animation.PlayerAnimation;
 import com.Betulis.Game2D.game.components.movement.EntityMover;
 import com.Betulis.Game2D.game.components.movement.PlayerController;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,7 +21,7 @@ public class PlayerPrefab {
 
         //Movement
         playerObj.addComponent(new PlayerController());
-        playerObj.addComponent(new EntityMover(1000f));
+        playerObj.addComponent(new EntityMover(100f));
 
         //Animation
         SpriteSheetSlicer sheet = new SpriteSheetSlicer(asset, 32, 32, 3,8);

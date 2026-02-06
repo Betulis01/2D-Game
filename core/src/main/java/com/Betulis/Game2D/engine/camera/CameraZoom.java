@@ -8,7 +8,7 @@ public class CameraZoom extends Component {
     private InputBindings input;
     private Camera camera;
 
-    private float zoomSpeed = 0.1f; // tweak to taste
+    private float zoomSpeed = 2f; // tweak to taste
 
     @Override
     public void start() {

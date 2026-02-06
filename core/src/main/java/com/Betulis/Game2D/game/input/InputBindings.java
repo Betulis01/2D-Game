@@ -48,7 +48,7 @@ public final class InputBindings extends InputAdapter {
 
     /** Returns the scroll amount and resets it for the next frame. */
     public float getZoomDelta() {
-        float delta = scrollDelta;
+        float delta =- scrollDelta;
         scrollDelta = 0; // Consume the event
         return delta;
     }

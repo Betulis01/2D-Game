@@ -25,7 +25,8 @@ public class PlayerController extends Movement {
 
         moving = (direction.x != 0 || direction.y != 0);
         if (!moving) return;
-        direction.normalize();
+        
+        direction.normalize(); // Normalize is crucial here so the player doesn't move faster diagonally than cardinally 
         
     }
 }

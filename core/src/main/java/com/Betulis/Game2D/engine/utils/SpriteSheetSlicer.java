@@ -14,13 +14,12 @@ public final class SpriteSheetSlicer {
     private final int frameWidth;
     private final int frameHeight;
 
-    public SpriteSheetSlicer(String assetPath, int frameWidth, int frameHeight, int frameCount, int rows) {
-        this.spriteSheet = new Texture(Gdx.files.internal(assetPath));
+    public SpriteSheetSlicer(Texture texture, int frameWidth, int frameHeight, int frameCount, int rows) {
+        this.spriteSheet = texture;
         this.frameWidth = frameWidth;
         this.frameHeight = frameHeight;
         this.frameCount = frameCount;
         this.rows = rows;
-
         this.frames = new TextureRegion[frameCount][rows];
         load();
     }

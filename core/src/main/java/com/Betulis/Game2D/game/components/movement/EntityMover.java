@@ -41,17 +41,17 @@ public final class EntityMover extends Component {
         float halfH = sprite.getHeight() * 0.5f;
 
         
-        // float mapWidth  = getScene().getMap().getWidth();
-        // float mapHeight = getScene().getMap().getHeight();
+        float mapWidth  = 100*32;//getScene().getMap().getWidth();
+        float mapHeight = 100*32;//getScene().getMap().getHeight();
 
-        // //if (getGameObject().getComponent(Hitbox.class) == null) {
-        //     // Clamp the CENTER
-        //     if (nextX < halfW) nextX = halfW;
-        //     if (nextX > mapWidth - halfW) nextX = mapWidth - halfW;
+        //if (getGameObject().getComponent(Hitbox.class) == null) {
+            // Clamp the CENTER
+            if (nextX < halfW) nextX = halfW;
+            if (nextX > mapWidth - halfW) nextX = mapWidth - halfW;
 
-        //     if (nextY < halfH) nextY = halfH;
-        //     if (nextY > mapHeight - halfH) nextY = mapHeight - halfH;
-        // //}
+            if (nextY < halfH) nextY = halfH;
+            if (nextY > mapHeight - halfH) nextY = mapHeight - halfH;
+        //}
 
 
         transform.setPosition(nextX, nextY);

@@ -1,7 +1,8 @@
 package com.Betulis.Game2D.engine.system;
 
-import com.Betulis.Game2D.game.DeathValley;
+import com.Betulis.Game2D.engine.utils.Assets;
 import com.Betulis.Game2D.game.input.InputBindings;
+import com.Betulis.Game2D.game.scenes.DeathValley;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -14,6 +15,7 @@ public class Game extends ApplicationAdapter {
     private Scene scene;
     private InputBindings input;
     private BitmapFont font;
+    private Assets assets;
 
     //screen
     private int screenWidth, screenHeight;
@@ -29,6 +31,7 @@ public class Game extends ApplicationAdapter {
 
         initWindow();
         initInput();
+        initSystems();
 
 
         scene = new DeathValley();
@@ -43,6 +46,11 @@ public class Game extends ApplicationAdapter {
     public void initInput() {
         input = new InputBindings();
         Gdx.input.setInputProcessor(input);
+    }
+
+    public void initSystems() {
+        assets = new Assets();
+        assets.load();
     }
 
 
@@ -68,6 +76,10 @@ public class Game extends ApplicationAdapter {
 
     public InputBindings getInput() {
         return input;
+    }
+
+    public Assets getAssets() {
+        return assets;
     }
 
     public int getScreenWidth() {

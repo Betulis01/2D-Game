@@ -1,16 +1,13 @@
 package com.Betulis.Game2D.engine.system;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.Betulis.Game2D.engine.camera.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.SnapshotArray;
 
 public abstract class Scene {
-    protected List<GameObject> objects = new ArrayList<>();
+    protected SnapshotArray<GameObject> objects = new SnapshotArray<>();
     protected Game game;
     protected Camera camera;
-
 
     /* LOAD */
     public void load(Game game) {
@@ -27,35 +24,32 @@ public abstract class Scene {
         objects.clear();
     }
 
-    public void remove(GameObject obj) {
-        obj.destroy();
-        objects.remove(obj);
-    }
     /* RENDER AND UPDATE */
-    public void render(SpriteBatch batch) {
-        for (GameObject obj : objects) {
-            obj.render(batch);
+    public void update(float dt) {
+        GameObject[] items = objects.begin(); // Create the snapshot
+        
+        for (int i = 0; i < objects.size; i++) { // Iterate using a standard for-loop (SnapshotArray is optimized for this)
+            items[i].update(dt);
         }
+        objects.end(); // Commit any additions/removals that happened during the loop
     }
 
-    public void update(float dt) {
-        for (GameObject obj : objects) {
-            obj.update(dt);
+    public void render(SpriteBatch batch) {
+        GameObject[] items = objects.begin();
+        for (int i = 0; i < objects.size; i++) {
+            items[i].render(batch);
         }
+        objects.end();
     }
 
     /* ADD AND REMOVE */
-
     public void addObject(GameObject obj) {
-        if (objects.contains(obj)) return;
-
         obj.setScene(this);
         objects.add(obj);
     }
 
     public void removeObject(GameObject obj) {
-        if (!objects.contains(obj)) return;
-        objects.remove(obj);
+        objects.removeValue(obj, true); 
     }
 
     /* APIs */

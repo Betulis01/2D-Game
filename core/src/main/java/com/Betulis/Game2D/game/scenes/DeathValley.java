@@ -1,4 +1,4 @@
-package com.Betulis.Game2D.game;
+package com.Betulis.Game2D.game.scenes;
 
 import com.Betulis.Game2D.engine.camera.Camera;
 import com.Betulis.Game2D.engine.system.GameObject;
@@ -19,7 +19,7 @@ public class DeathValley extends Scene {
 
         //Player 
         PlayerPrefab playerPrefab = new PlayerPrefab();
-        GameObject playerObj = playerPrefab.create(100, 100);
+        GameObject playerObj = playerPrefab.create(100, 100,getGame().getAssets().getTexture("player/orc8.png"));
         addObject(playerObj);
 
         // Camera

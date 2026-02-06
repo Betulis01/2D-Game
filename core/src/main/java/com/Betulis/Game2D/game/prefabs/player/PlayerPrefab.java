@@ -10,9 +10,10 @@ import com.Betulis.Game2D.engine.system.Transform;
 import com.Betulis.Game2D.engine.utils.SpriteSheetSlicer;
 import com.Betulis.Game2D.game.components.movement.EntityMover;
 import com.Betulis.Game2D.game.components.movement.PlayerController;
+import com.badlogic.gdx.graphics.Texture;
 
 public class PlayerPrefab {
-    public GameObject create(float x, float y) {
+    public GameObject create(float x, float y, Texture asset) {
         GameObject playerObj = new GameObject("Player");
         
         //Transform
@@ -23,7 +24,7 @@ public class PlayerPrefab {
         playerObj.addComponent(new EntityMover(1000f));
 
         //Animation
-        SpriteSheetSlicer sheet = new SpriteSheetSlicer("player/orc8.png", 32,32, 3,8);
+        SpriteSheetSlicer sheet = new SpriteSheetSlicer(asset, 32, 32, 3,8);
         AnimationDirector director = new AnimationDirector();
         walkClips(sheet, director);
         idleClips(sheet, director);

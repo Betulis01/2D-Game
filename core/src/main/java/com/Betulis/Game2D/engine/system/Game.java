@@ -90,4 +90,8 @@ public class Game extends ApplicationAdapter {
         return screenHeight;
     }
 
+    public int getFps() {
+        return fps;
+    }
+    
 }

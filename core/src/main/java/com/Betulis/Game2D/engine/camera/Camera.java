@@ -11,8 +11,8 @@ public class Camera extends Component {
     private final float screenWidth;
     private final float screenHeight;
     private float zoom = 1.0f;
+    private float lerp = 0.1f; // 0.1 means move 10% of the distance every frame. Lower = more "floaty/laggy", Higher = tighter following.
 
-    // Optional: world bounds (map size)
     private float worldWidth;
     private float worldHeight;
     private boolean clampToWorld = false;
@@ -53,28 +53,40 @@ public class Camera extends Component {
         return zoom;
     }
 
+    /* LERP */
+    public void setLerp(float lerp) {
+        this.lerp = lerp;
+    }
+
     /* UPDATE */
 
     @Override
     public void update(float dt) {
         if (target == null) return;
+        float actualLerp = 1.0f - (float) Math.pow(1.0f - lerp, dt * getScene().getGame().getFps());
 
-        float viewW = screenWidth / zoom;
-        float viewH = screenHeight / zoom;
+        float currentX = (float) transform.getWorldX();
+        float currentY = (float) transform.getWorldY();
 
-        // Camera wants to center on target
-        float camX = target.getWorldX();
-        float camY = target.getWorldY();
+        float targetX = (float) target.getWorldX();
+        float targetY = (float) target.getWorldY();
+
+        float nextX = currentX + (targetX - currentX) * actualLerp;
+        float nextY = currentY + (targetY - currentY) * actualLerp;
+
 
         if (clampToWorld) {
+            float viewW = screenWidth / zoom;
+            float viewH = screenHeight / zoom;
             float halfW = viewW * 0.5f;
             float halfH = viewH * 0.5f;
 
-            camX = clamp(camX, halfW, worldWidth  - halfW);
-            camY = clamp(camY, halfH, worldHeight - halfH);
+            nextX = clamp(nextX, halfW, worldWidth - halfW);
+            nextY = clamp(nextY, halfH, worldHeight - halfH);
         }
 
-        transform.setPosition(camX, camY);
+        // 5. Update the Camera Transform
+        transform.setPosition(nextX, nextY);
     }
 
 

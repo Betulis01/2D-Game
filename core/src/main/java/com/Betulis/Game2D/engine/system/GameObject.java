@@ -30,7 +30,7 @@ public class GameObject {
 
     public void destroy() {
         if (scene != null) {
-            scene.remove(this);
+            scene.removeObject(this);
         }
         active = false;
         onDestroy();
@@ -45,7 +45,7 @@ public class GameObject {
     /* RENDER AND UPDATE */
     public void update(float dt) {
         if (!active) return;
-        if (!started) start(); // Start is delayed until the first update
+        if (!started) start(); 
 
         for (Component c : components) {
             if (c.isEnabled()) {
@@ -92,7 +92,7 @@ public class GameObject {
 
 
     /* APIs */
-    public void setScene(Scene scene) { // INTERNAL — Scene sets this when adding the object
+    public void setScene(Scene scene) {
         this.scene = scene;
         for (Component c : components) {
             c.setGameObject(this);

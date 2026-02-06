@@ -5,13 +5,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 public abstract class Scene {
-    protected SnapshotArray<GameObject> objects = new SnapshotArray<>();
+    protected SnapshotArray<GameObject> objects;
     protected Game game;
     protected Camera camera;
 
     /* LOAD */
     public void load(Game game) {
         this.game = game;
+        objects = new SnapshotArray<>(GameObject.class);
         onLoad();
     }
     protected abstract void onLoad();

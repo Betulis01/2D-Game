@@ -29,10 +29,8 @@ public class Game extends ApplicationAdapter {
         batch = new SpriteBatch();
         font = new BitmapFont();
 
-        //input
-        input = new InputBindings();
-        Gdx.input.setInputProcessor(input);
-
+        initWindow();
+        initInput();
 
 
         scene = new DeathValley();
@@ -42,6 +40,11 @@ public class Game extends ApplicationAdapter {
     public void initWindow() {
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
+    }
+
+    public void initInput() {
+        input = new InputBindings();
+        Gdx.input.setInputProcessor(input);
     }
 
 

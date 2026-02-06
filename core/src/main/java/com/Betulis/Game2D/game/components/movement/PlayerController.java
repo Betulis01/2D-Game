@@ -15,7 +15,7 @@ public class PlayerController extends Movement {
     }
 
     @Override
-    public void updateMovement(double dt) {
+    public void updateMovement(float dt) {
         direction.set(0, 0);
 
         if (input.isHeld(Action.MOVE_UP)) direction.y += 1;

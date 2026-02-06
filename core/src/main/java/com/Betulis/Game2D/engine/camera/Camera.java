@@ -45,7 +45,6 @@ public class Camera extends Component {
         setZoom(zoom + (targetZoom - zoom));
     }
 
-
     public void setZoom(float zoom) {
         this.zoom = Math.max(0.25f, Math.min(zoom, 4.0f));
     }

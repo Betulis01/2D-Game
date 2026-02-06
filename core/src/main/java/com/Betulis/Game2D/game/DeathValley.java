@@ -27,7 +27,7 @@ public class DeathValley extends Scene {
         GameObject cameraObj = cameraPrefab.create(playerObj.getComponent(Transform.class), getGame().getScreenWidth(), getGame().getScreenHeight());
         addObject(cameraObj);
         
-        //cameraObj.getComponent(Camera.class).setWorldBounds(map.width * map.tileWidth,map.height * map.tileHeight);
+        cameraObj.getComponent(Camera.class).setWorldBounds(100*32,100*32); //map.width * map.tileWidth,map.height * map.tileHeight);
         cameraObj.getComponent(Camera.class).setZoom(1);
         setCamera(cameraObj.getComponent(Camera.class));
 
@@ -36,7 +36,6 @@ public class DeathValley extends Scene {
     @Override
     public void update(float dt) {
         super.update(dt);
-        
     }
 
     @Override

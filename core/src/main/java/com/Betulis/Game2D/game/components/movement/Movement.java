@@ -9,7 +9,7 @@ public abstract class Movement extends Component {
     protected boolean moving;
 
     /** Compute desired movement direction */
-    public abstract void updateMovement(double dt);
+    public abstract void updateMovement(float dt);
 
     public Vector2 getDirection() {
         return direction;

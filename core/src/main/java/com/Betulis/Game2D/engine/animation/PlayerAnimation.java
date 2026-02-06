@@ -22,7 +22,7 @@ public class PlayerAnimation extends Component {
     public void update(float dt) {
         if (movement == null || director == null) return;
         Vector2 dir = movement.getDirection();
-
+        
         if (movement.isMoving()) {
             walkDirectionFromVector(dir);
         } else {
@@ -35,14 +35,14 @@ public class PlayerAnimation extends Component {
         float y = dir.y;
 
 
-        if (x > 0 && y > 0) director.play("walk_down_right", true); 
-        else if (x > 0 && y < 0) director.play("walk_up_right", true);
-        else if (x < 0 && y > 0) director.play("walk_down_left", true);
-        else if (x < 0 && y < 0) director.play("walk_up_left", true);
+        if (x > 0 && y > 0) director.play("walk_up_right", true); 
+        else if (x > 0 && y < 0) director.play("walk_down_right", true);
+        else if (x < 0 && y > 0) director.play("walk_up_left", true);
+        else if (x < 0 && y < 0) director.play("walk_down_left", true);
         else if (x > 0) director.play("walk_right", true);
         else if (x < 0) director.play("walk_left", true);
-        else if (y > 0) director.play("walk_down", true);
-        else if (y < 0) director.play("walk_up", true);
+        else if (y > 0) director.play("walk_up", true);
+        else if (y < 0) director.play("walk_down", true);
 
         lastDir.set(x, y);
     }
@@ -51,14 +51,14 @@ public class PlayerAnimation extends Component {
         float x = lastDir.x;
         float y = lastDir.y;
 
-        if (x > 0 && y > 0) director.play("idle_down_right", false);
-        else if (x > 0 && y < 0) director.play("idle_up_right", false);
-        else if (x < 0 && y > 0) director.play("idle_down_left", false);
-        else if (x < 0 && y < 0) director.play("idle_up_left", false);
+        if (x > 0 && y > 0) director.play("idle_up_right", false);
+        else if (x > 0 && y < 0) director.play("idle_down_right", false);
+        else if (x < 0 && y > 0) director.play("idle_up_left", false);
+        else if (x < 0 && y < 0) director.play("idle_down_left", false);
         else if (x > 0) director.play("idle_right", false);
         else if (x < 0) director.play("idle_left", false);
-        else if (y > 0) director.play("idle_down", false);
-        else if (y < 0) director.play("idle_up", false);
+        else if (y > 0) director.play("idle_up", false);
+        else if (y < 0) director.play("idle_down", false);
     }
 
 }

@@ -12,7 +12,7 @@ public final class AnimationDirector extends Component {
     private AnimationUpdater updater;
 
     private final Map<String, AnimationClip> animations = new HashMap<>();
-    private AnimationClip current;
+    private AnimationClip currentClip;
 
     private boolean loop = true;
     private boolean finished;
@@ -25,8 +25,8 @@ public final class AnimationDirector extends Component {
     public void add(String name, AnimationClip clip) {
         animations.put(name, clip);
 
-        if (current == null) {
-            current = clip;
+        if (currentClip == null) {
+            currentClip = clip;
             finished = false;
         }
     }
@@ -39,10 +39,13 @@ public final class AnimationDirector extends Component {
         AnimationClip next = animations.get(name);
         if (next == null) return;
 
-        if (next == current && finished) return;
+        if (next == currentClip && !finished) {
+            this.loop = loop; // Update loop status just in case
+            return;
+        }
 
         this.loop = loop;
-        this.current = next;
+        this.currentClip = next;
         this.finished = false;
 
         if (updater != null) {
@@ -56,8 +59,8 @@ public final class AnimationDirector extends Component {
         loop = false;
     }
 
-    public AnimationClip getCurrent() {
-        return current;
+    public AnimationClip getCurrentClip() {
+        return currentClip;
     }
 
     public boolean isLooping() {

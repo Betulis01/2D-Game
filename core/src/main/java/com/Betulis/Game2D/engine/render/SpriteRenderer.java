@@ -30,7 +30,7 @@ public class SpriteRenderer extends Component {
     public void render(SpriteBatch batch) {
         if (director == null && updater == null) return;
         
-        AnimationClip clip = director.getCurrent();
+        AnimationClip clip = director.getCurrentClip();
         if (clip == null) return;  
 
         int index = updater.getFrameIndex();

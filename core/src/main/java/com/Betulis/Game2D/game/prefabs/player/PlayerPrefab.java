@@ -5,13 +5,11 @@ import com.Betulis.Game2D.engine.animation.AnimationDirector;
 import com.Betulis.Game2D.engine.animation.AnimationUpdater;
 import com.Betulis.Game2D.engine.animation.PlayerAnimation;
 import com.Betulis.Game2D.engine.render.SpriteRenderer;
-import com.Betulis.Game2D.engine.system.Game;
 import com.Betulis.Game2D.engine.system.GameObject;
 import com.Betulis.Game2D.engine.system.Transform;
 import com.Betulis.Game2D.engine.utils.SpriteSheetSlicer;
 import com.Betulis.Game2D.game.components.movement.EntityMover;
 import com.Betulis.Game2D.game.components.movement.PlayerController;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class PlayerPrefab {
     public GameObject create(float x, float y) {
@@ -22,7 +20,7 @@ public class PlayerPrefab {
 
         //Movement
         playerObj.addComponent(new PlayerController());
-        playerObj.addComponent(new EntityMover(100f));
+        playerObj.addComponent(new EntityMover(1000f));
 
         //Animation
         SpriteSheetSlicer sheet = new SpriteSheetSlicer("player/orc8.png", 32,32, 3,8);

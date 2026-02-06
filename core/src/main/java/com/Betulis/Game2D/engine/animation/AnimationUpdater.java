@@ -5,7 +5,7 @@ import com.Betulis.Game2D.engine.system.Component;
 public final class AnimationUpdater extends Component {
     private AnimationDirector director;
 
-    private double timer;
+    private float timer;
     private int frameIndex;
 
     @Override
@@ -17,7 +17,7 @@ public final class AnimationUpdater extends Component {
     public void update(float dt) {
         if (director == null) return;
 
-        AnimationClip current = director.getCurrent();
+        AnimationClip current = director.getCurrentClip();
         if (current == null) return;
 
         timer += dt;

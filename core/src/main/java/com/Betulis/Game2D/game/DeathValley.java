@@ -28,7 +28,7 @@ public class DeathValley extends Scene {
         addObject(cameraObj);
         
         cameraObj.getComponent(Camera.class).setWorldBounds(100*32,100*32); //map.width * map.tileWidth,map.height * map.tileHeight);
-        cameraObj.getComponent(Camera.class).setZoom(1);
+        cameraObj.getComponent(Camera.class).setZoom(3);
         setCamera(cameraObj.getComponent(Camera.class));
 
     }

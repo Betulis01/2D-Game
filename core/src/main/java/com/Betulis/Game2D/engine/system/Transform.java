@@ -1,58 +1,58 @@
-package com.Betulis.Game2D.engine;
+package com.Betulis.Game2D.engine.system;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Transform extends Component {
 
-    private double x = 0;
-    private double y = 0;
-    private double z = 0;
-    private double zVelocity = 0;
-    private double rotation = 0; // degrees
-    private double scaleX = 1;
-    private double scaleY = 1;
+    private float x = 0;
+    private float y = 0;
+    private float z = 0;
+    private float zVelocity = 0;
+    private float rotation = 0; // degrees
+    private float scaleX = 1;
+    private float scaleY = 1;
 
     private Transform parent = null;
     private final List<Transform> children = new ArrayList<>();
 
     /* POSITION */
-    public double getX() { return x; }
-    public double getY() { return y; }
-    public double getZ() { return z; }
-    public double getZVelocity() { return zVelocity; }
+    public float getX() { return x; }
+    public float getY() { return y; }
+    public float getZ() { return z; }
+    public float getZVelocity() { return zVelocity; }
 
-    public void setX(double x) { this.x = x; }
-    public void setY(double y) { this.y = y; }
-    public void setZ(double z) { this.z = z; }
-    public void setZVelocity(double zVelocity) { this.zVelocity = zVelocity; }
+    public void setX(float x) { this.x = x; }
+    public void setY(float y) { this.y = y; }
+    public void setZ(float z) { this.z = z; }
+    public void setZVelocity(float zVelocity) { this.zVelocity = zVelocity; }
 
-    public void setPosition(double x, double y) {
+    public void setPosition(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
-    public void translate(double dx, double dy) {
+    public void translate(float dx, float dy) {
         this.x += dx;
         this.y += dy;
     }
 
     /* ROTATION */
-    public double getRotation() { return rotation; }
+    public float getRotation() { return rotation; }
 
-    public void setRotation(double rotation) {
+    public void setRotation(float rotation) {
         this.rotation = rotation;
     }
 
-    public void rotate(double dAngle) {
+    public void rotate(float dAngle) {
         this.rotation += dAngle;
     }
 
     /* SCALE */
-    public double getScaleX() { return scaleX; }
-    public double getScaleY() { return scaleY; }
+    public float getScaleX() { return scaleX; }
+    public float getScaleY() { return scaleY; }
 
-    public void setScale(double scaleX, double scaleY) {
+    public void setScale(float scaleX, float scaleY) {
         this.scaleX = scaleX;
         this.scaleY = scaleY;
     }
@@ -79,17 +79,17 @@ public class Transform extends Component {
     }
 
     /* WORLD */
-    public double getWorldX() {
+    public float getWorldX() {
         if (parent == null) return x;
         return parent.getWorldX() + x;
     }
 
-    public double getWorldY() {
+    public float getWorldY() {
         if (parent == null) return y;
         return parent.getWorldY() + y;
     }
 
-    public void setWorldPosition(double worldX, double worldY) {
+    public void setWorldPosition(float worldX, float worldY) {
         if (parent == null) {
             this.x = worldX;
             this.y = worldY;
@@ -100,22 +100,22 @@ public class Transform extends Component {
     }
 
 
-    public double getWorldZ() {
+    public float getWorldZ() {
         if (parent == null) return z;
         return parent.getWorldZ() + z;
     }
 
-    public double getWorldRotation() {
+    public float getWorldRotation() {
         if (parent == null) return rotation;
         return parent.getWorldRotation() + rotation;
     }
 
-    public double getWorldScaleX() {
+    public float getWorldScaleX() {
         if (parent == null) return scaleX;
         return parent.getWorldScaleX() * scaleX;
     }
 
-    public double getWorldScaleY() {
+    public float getWorldScaleY() {
         if (parent == null) return scaleY;
         return parent.getWorldScaleY() * scaleY;
     }

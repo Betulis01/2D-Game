@@ -1,18 +1,35 @@
 package com.Betulis.Game2D.game;
 
-import com.Betulis.Game2D.engine.Scene;
+import com.Betulis.Game2D.engine.camera.Camera;
+import com.Betulis.Game2D.engine.system.GameObject;
+import com.Betulis.Game2D.engine.system.Scene;
+import com.Betulis.Game2D.engine.system.Transform;
+import com.Betulis.Game2D.game.prefabs.camera.CameraPrefab;
+import com.Betulis.Game2D.game.prefabs.player.PlayerPrefab;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class DeathValley extends Scene {
-    private ShapeRenderer sr;
     public DeathValley() {
         super(); 
     }
 
     @Override
-    public void load() {
+    public void onLoad() {
         System.out.println("Loading Death Valley...");
+
+        //Player 
+        PlayerPrefab playerPrefab = new PlayerPrefab();
+        GameObject playerObj = playerPrefab.create(100, 100);
+        addObject(playerObj);
+
+        // Camera
+        CameraPrefab cameraPrefab = new CameraPrefab();
+        GameObject cameraObj = cameraPrefab.create(playerObj.getComponent(Transform.class), getGame().getScreenWidth(), getGame().getScreenHeight());
+        addObject(cameraObj);
+        
+        //cameraObj.getComponent(Camera.class).setWorldBounds(map.width * map.tileWidth,map.height * map.tileHeight);
+        cameraObj.getComponent(Camera.class).setZoom(1);
+        setCamera(cameraObj.getComponent(Camera.class));
 
     }
 

@@ -1,17 +1,23 @@
-package com.Betulis.Game2D.engine;
+package com.Betulis.Game2D.engine.system;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.Betulis.Game2D.engine.camera.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class Scene {
     protected List<GameObject> objects = new ArrayList<>();
+    protected Game game;
+    protected Camera camera;
+
 
     /* LOAD */
-    public void load() {
-
+    public void load(Game game) {
+        this.game = game;
+        onLoad();
     }
+    protected abstract void onLoad();
 
     /* UNLOAD */
     public void unload() {
@@ -60,5 +66,17 @@ public abstract class Scene {
             }
         }
         return null;
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public Camera getCamera() {
+        return camera;
     }
 }

@@ -1,4 +1,4 @@
-package com.Betulis.Game2D.engine;
+package com.Betulis.Game2D.engine.system;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -19,7 +19,7 @@ public abstract class Component {
 
     public void start() {} //Called once just before the first update
 
-    public void update(double dt) {} //Called every frame while enabled
+    public void update(float dt) {} //Called every frame while enabled
 
     public void render(SpriteBatch batch) {} //Rendering callback (only for render components) 
 

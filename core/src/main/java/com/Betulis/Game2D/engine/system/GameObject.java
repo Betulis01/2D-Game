@@ -1,4 +1,4 @@
-package com.Betulis.Game2D.engine;
+package com.Betulis.Game2D.engine.system;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class GameObject {
     }
 
     /* RENDER AND UPDATE */
-    public void update(double dt) {
+    public void update(float dt) {
         if (!active) return;
         if (!started) start(); // Start is delayed until the first update
 

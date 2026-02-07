@@ -5,7 +5,6 @@ import com.Betulis.Game2D.game.input.InputBindings;
 import com.Betulis.Game2D.game.scenes.DeathValley;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -47,7 +46,7 @@ public class Game extends ApplicationAdapter {
 
     public void initInput() {
         input = new InputBindings();
-        Gdx.input.setInputProcessor(new InputAdapter());
+        Gdx.input.setInputProcessor(input);
     }
 
     public void initSystems() {

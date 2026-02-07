@@ -5,12 +5,14 @@ import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 
-public final class InputBindings {
+public final class InputBindings extends InputAdapter {
 
     // LibGDX uses int for Keys and Buttons, not Objects
     private final Map<Action, Integer> keyBindings;
     private final Map<Action, Integer> mouseBindings;
+    private float scrollDelta;
 
     public enum Action {
         DEBUG,
@@ -64,14 +66,27 @@ public final class InputBindings {
         keyBindings.put(action, key);
     }
 
-    // NOTE: LibGDX does not allow static polling for scroll delta. 
-    // You must implement an InputProcessor to capture scroll events.
-    // For now, this returns 0 to prevent compilation errors.
-    public double getZoomDelta() {
-        return 0; 
-    }
-
     public int getBinding(Action action) {
         return keyBindings.getOrDefault(action, -1);
     }
+
+
+
+    // --- INPUT PROCESSOR OVERRIDES ---
+
+    @Override
+    public boolean scrolled(float amountX, float amountY) {
+        // In LibGDX, amountY is the vertical scroll. 
+        // Positive usually means scrolling down (zoom out).
+        this.scrollDelta = amountY;
+        return true; 
+    }
+
+    /** Returns the scroll amount and resets it for the next frame. */
+    public float getZoomDelta() {
+        float delta =- scrollDelta;
+        scrollDelta = 0; // Consume the event
+        return delta;
+    }
+
 }

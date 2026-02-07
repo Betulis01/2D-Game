@@ -63,6 +63,10 @@ public abstract class Scene {
         return null;
     }
 
+    public SnapshotArray<GameObject> getObjects() {
+        return objects;
+    }
+
     public void setCamera(Camera camera) {
         this.camera = camera;
     }

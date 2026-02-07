@@ -1,41 +1,55 @@
 package com.Betulis.Game2D.game.input;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
 import java.util.EnumMap;
 import java.util.Map;
 
-public final class InputBindings extends InputAdapter {
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+
+public final class InputBindings {
+
+    // LibGDX uses int for Keys and Buttons, not Objects
+    private final Map<Action, Integer> keyBindings;
+    private final Map<Action, Integer> mouseBindings;
 
     public enum Action {
-        DEBUG, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, LIGHTNING_BOLT, FIREBALL
+        DEBUG,
+        MOVE_LEFT,
+        MOVE_RIGHT,
+        MOVE_UP,
+        MOVE_DOWN,
+        LIGHTNING_BOLT,
+        FIREBALL
     }
 
-    private final Map<Action, Integer> keyBindings = new EnumMap<>(Action.class);
-    private final Map<Action, Integer> mouseBindings = new EnumMap<>(Action.class);
-
-    // State tracking for event-based input
-    private float scrollDelta = 0;
-    private boolean isLeftMouseClicked = false;
-    private boolean isRightMouseClicked = false;
-
     public InputBindings() {
-        // Default Key Bindings
-        keyBindings.put(Action.DEBUG,      Input.Keys.SPACE);
-        keyBindings.put(Action.MOVE_LEFT,  Input.Keys.A);
-        keyBindings.put(Action.MOVE_RIGHT, Input.Keys.D);
-        keyBindings.put(Action.MOVE_UP,    Input.Keys.W);
-        keyBindings.put(Action.MOVE_DOWN,  Input.Keys.S);
+        this.keyBindings = new EnumMap<>(Action.class);
+        this.mouseBindings = new EnumMap<>(Action.class);
 
-        // Default Mouse Bindings
+        // Default bindings using LibGDX constants
+        keyBindings.put(Action.DEBUG,       Input.Keys.SPACE);
+        keyBindings.put(Action.MOVE_LEFT,   Input.Keys.A);
+        keyBindings.put(Action.MOVE_RIGHT,  Input.Keys.D);
+        keyBindings.put(Action.MOVE_UP,     Input.Keys.W);
+        keyBindings.put(Action.MOVE_DOWN,   Input.Keys.S);
+
+        // LibGDX Buttons: LEFT (Primary), RIGHT (Secondary), MIDDLE, etc.
         mouseBindings.put(Action.LIGHTNING_BOLT, Input.Buttons.RIGHT);
         mouseBindings.put(Action.FIREBALL,       Input.Buttons.LEFT);
     }
 
-    // --- POLLING LOGIC ---
+    // "Pressed" usually implies a single trigger (Just Pressed)
+    public boolean isPressed(Action action) {
+        if (keyBindings.containsKey(action)) {
+            return Gdx.input.isKeyJustPressed(keyBindings.get(action));
+        }
+        if (mouseBindings.containsKey(action)) {
+            return Gdx.input.isButtonJustPressed(mouseBindings.get(action));
+        }
+        return false;
+    }
 
-    /** Checks if a key or button is currently held down. */
+    // "Held" implies continuous state
     public boolean isHeld(Action action) {
         if (keyBindings.containsKey(action)) {
             return Gdx.input.isKeyPressed(keyBindings.get(action));
@@ -46,53 +60,18 @@ public final class InputBindings extends InputAdapter {
         return false;
     }
 
-    /** Returns the scroll amount and resets it for the next frame. */
-    public float getZoomDelta() {
-        float delta =- scrollDelta;
-        scrollDelta = 0; // Consume the event
-        return delta;
+    public void bind(Action action, int key) {
+        keyBindings.put(action, key);
     }
 
-    // --- INPUT PROCESSOR OVERRIDES ---
-
-    @Override
-    public boolean scrolled(float amountX, float amountY) {
-        // In LibGDX, amountY is the vertical scroll. 
-        // Positive usually means scrolling down (zoom out).
-        this.scrollDelta = amountY;
-        return true; 
+    // NOTE: LibGDX does not allow static polling for scroll delta. 
+    // You must implement an InputProcessor to capture scroll events.
+    // For now, this returns 0 to prevent compilation errors.
+    public double getZoomDelta() {
+        return 0; 
     }
 
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        // This is called exactly ONCE when the mouse is clicked
-        if (button == Input.Buttons.LEFT) isLeftMouseClicked = true;
-        if (button == Input.Buttons.RIGHT) isRightMouseClicked = true;
-        return false; 
-    }
-
-    /** * Use this for actions like "Fireball" if you only want 
-     * one shot per click, even if the button is held.
-     */
-    public boolean wasMouseClicked(int button) {
-        if (button == Input.Buttons.LEFT && isLeftMouseClicked) {
-            isLeftMouseClicked = false;
-            return true;
-        }
-        if (button == Input.Buttons.RIGHT && isRightMouseClicked) {
-            isRightMouseClicked = false;
-            return true;
-        }
-        return false;
-    }
-
-    // --- BINDING MANAGEMENT ---
-
-    public void rebindKey(Action action, int newLibgdxKey) {
-        keyBindings.put(action, newLibgdxKey);
-    }
-
-    public void rebindMouse(Action action, int newLibgdxButton) {
-        mouseBindings.put(action, newLibgdxButton);
+    public int getBinding(Action action) {
+        return keyBindings.getOrDefault(action, -1);
     }
 }

@@ -5,6 +5,7 @@ import com.Betulis.Game2D.game.input.InputBindings;
 import com.Betulis.Game2D.game.scenes.DeathValley;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -20,8 +21,9 @@ public class Game extends ApplicationAdapter {
     //screen
     private int screenWidth, screenHeight;
 
-    // fps
+    // fps and time
     private int fps;
+    private float timeSeconds = 0.0f;
 
     @Override
     public void create() {
@@ -45,7 +47,7 @@ public class Game extends ApplicationAdapter {
 
     public void initInput() {
         input = new InputBindings();
-        Gdx.input.setInputProcessor(input);
+        Gdx.input.setInputProcessor(new InputAdapter());
     }
 
     public void initSystems() {
@@ -59,6 +61,7 @@ public class Game extends ApplicationAdapter {
         ScreenUtils.clear(1, 1, 1, 1);
         fps = Gdx.graphics.getFramesPerSecond();
         float dt = Gdx.graphics.getDeltaTime();
+        timeSeconds += dt;
         
         scene.update(dt); //update
         
@@ -93,5 +96,8 @@ public class Game extends ApplicationAdapter {
     public int getFps() {
         return fps;
     }
-    
+
+    public float getTime() {
+        return timeSeconds;
+    }
 }

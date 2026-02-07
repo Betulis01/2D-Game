@@ -7,9 +7,14 @@ import com.Betulis.Game2D.engine.render.SpriteRenderer;
 import com.Betulis.Game2D.engine.system.GameObject;
 import com.Betulis.Game2D.engine.system.Transform;
 import com.Betulis.Game2D.engine.utils.SpriteSheetSlicer;
+import com.Betulis.Game2D.game.components.AABB.Hurtbox;
 import com.Betulis.Game2D.game.components.animation.PlayerAnimation;
+import com.Betulis.Game2D.game.components.combat.AttackSpawner;
+import com.Betulis.Game2D.game.components.combat.CombatState;
 import com.Betulis.Game2D.game.components.movement.EntityMover;
 import com.Betulis.Game2D.game.components.movement.PlayerController;
+import com.Betulis.Game2D.game.components.stats.Health;
+import com.Betulis.Game2D.game.input.PlayerInput;
 import com.badlogic.gdx.graphics.Texture;
 
 public class PlayerPrefab {
@@ -32,6 +37,22 @@ public class PlayerPrefab {
         playerObj.addComponent(new AnimationUpdater());
         playerObj.addComponent(new SpriteRenderer(32, 32));
         playerObj.addComponent(new PlayerAnimation());
+
+        //Collision
+
+        //Health
+        playerObj.addComponent(new Health(100, 0));
+        
+        //Combat
+        playerObj.addComponent(new CombatState());
+
+        //Hurtbox
+        playerObj.addComponent(new Hurtbox(10,20,0,2));
+
+        //Attack
+        playerObj.addComponent(new AttackSpawner());
+        playerObj.addComponent(new PlayerInput());
+
 
         return playerObj;
     }

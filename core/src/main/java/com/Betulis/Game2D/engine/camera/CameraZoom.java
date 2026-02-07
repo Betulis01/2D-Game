@@ -16,11 +16,11 @@ public class CameraZoom extends Component {
         camera = getScene().getCamera(); // Camera might be on same object or fetched from scene
     }
 
-    @Override
-    public void update(float dt) {
-        float scroll = input.getZoomDelta();
-        if (scroll != 0) {
-            camera.zoomBy(scroll * zoomSpeed);
-        }
-    }
+    // @Override
+    // public void update(float dt) {
+    //     float scroll = input.getZoomDelta();
+    //     if (scroll != 0) {
+    //         camera.zoomBy(scroll * zoomSpeed);
+    //     }
+    // }
 }

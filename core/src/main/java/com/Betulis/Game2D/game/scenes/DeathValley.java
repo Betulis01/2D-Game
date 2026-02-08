@@ -1,22 +1,41 @@
 package com.Betulis.Game2D.game.scenes;
 
 import com.Betulis.Game2D.engine.camera.Camera;
+import com.Betulis.Game2D.engine.math.AABB;
+import com.Betulis.Game2D.engine.render.ObjectLayerRenderer;
+import com.Betulis.Game2D.engine.render.TileMapRenderer;
 import com.Betulis.Game2D.engine.system.GameObject;
 import com.Betulis.Game2D.engine.system.Scene;
 import com.Betulis.Game2D.engine.system.Transform;
+import com.Betulis.Game2D.engine.tiled.TiledMap;
+import com.Betulis.Game2D.engine.tiled.TiledMapLoader;
 import com.Betulis.Game2D.game.prefabs.camera.CameraPrefab;
 import com.Betulis.Game2D.game.prefabs.mobs.SlimePrefab;
 import com.Betulis.Game2D.game.prefabs.player.PlayerPrefab;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class DeathValley extends Scene {
+    private TiledMap map;
+    private GameObject mapObject;
+    private AABB mapBounds;
+
     public DeathValley() {
         super(); 
     }
 
     @Override
     public void onLoad() {
-        System.out.println("Loading Death Valley...");
+        //Map
+        TiledMapLoader loader = new TiledMapLoader();
+        map = loader.load("scenes/DeathValley.tmx");
+        mapObject = new GameObject("DeathValley");
+        mapObject.addComponent(new TileMapRenderer(map));
+        mapObject.addComponent(new ObjectLayerRenderer(map));
+        addObject(mapObject);
+        System.out.println("DeathValley loaded with map size: "+ map.width + "x" + map.height);
+
+        //AABB
+        mapBounds = new AABB(0, 0, map.getWidth(), map.getHeight());
 
         //Player 
         PlayerPrefab playerPrefab = new PlayerPrefab();
@@ -27,25 +46,25 @@ public class DeathValley extends Scene {
         SlimePrefab slimePrefab = new SlimePrefab();
         GameObject slimeObj0 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
         addObject(slimeObj0);
-        GameObject slimeObj1 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        addObject(slimeObj1);
-        GameObject slimeObj2 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        addObject(slimeObj2);
-        GameObject slimeObj3 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        addObject(slimeObj3);
-        GameObject slimeObj4 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        addObject(slimeObj4);
-        GameObject slimeObj5 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        addObject(slimeObj5);
-        GameObject slimeObj6 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        addObject(slimeObj6);
+        // GameObject slimeObj1 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
+        // addObject(slimeObj1);
+        // GameObject slimeObj2 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
+        // addObject(slimeObj2);
+        // GameObject slimeObj3 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
+        // addObject(slimeObj3);
+        // GameObject slimeObj4 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
+        // addObject(slimeObj4);
+        // GameObject slimeObj5 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
+        // addObject(slimeObj5);
+        // GameObject slimeObj6 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
+        // addObject(slimeObj6);
 
         // Camera
         CameraPrefab cameraPrefab = new CameraPrefab();
         GameObject cameraObj = cameraPrefab.create(playerObj.getComponent(Transform.class), getGame().getScreenWidth(), getGame().getScreenHeight());
         addObject(cameraObj);
         
-        cameraObj.getComponent(Camera.class).setWorldBounds(100*32,100*32); //map.width * map.tileWidth,map.height * map.tileHeight);
+        cameraObj.getComponent(Camera.class).setWorldBounds(map.width * map.tileWidth,map.height * map.tileHeight);
         cameraObj.getComponent(Camera.class).setZoom(3);
         setCamera(cameraObj.getComponent(Camera.class));
 

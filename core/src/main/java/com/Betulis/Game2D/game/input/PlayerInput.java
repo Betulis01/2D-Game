@@ -11,8 +11,6 @@ import com.badlogic.gdx.Gdx;
 public final class PlayerInput extends Component {
 
     private InputBindings input;
-    // Temp vector to avoid garbage collection during unprojection
-    private final Vector2 mousePos = new Vector2(); 
 
     @Override
     public void start() {

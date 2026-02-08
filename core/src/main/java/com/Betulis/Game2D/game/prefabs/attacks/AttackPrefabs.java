@@ -9,6 +9,7 @@ import com.Betulis.Game2D.engine.render.RotatedSpriteRenderer;
 import com.Betulis.Game2D.engine.system.GameObject;
 import com.Betulis.Game2D.engine.system.Transform;
 import com.Betulis.Game2D.engine.utils.SpriteSheetSlicer;
+import com.Betulis.Game2D.game.components.AABB.AttackOutsideMapDespawner;
 import com.Betulis.Game2D.game.components.AABB.Hitbox;
 import com.Betulis.Game2D.game.components.combat.AttackDurationDespawner;
 import com.Betulis.Game2D.game.components.combat.DamageOnHit;
@@ -38,8 +39,8 @@ public final class AttackPrefabs {
         attack.addComponent(new RotatedSpriteRenderer(16,16));
 
         //Despawner
-        //attack.addComponent(new AttackOutsideMapDespawner());
-        //attack.addComponent(new AttackDurationDespawner(cfg.stats().duration()));
+        attack.addComponent(new AttackOutsideMapDespawner());
+        attack.addComponent(new AttackDurationDespawner(cfg.stats.duration));
 
         //Movement
         attack.addComponent(new Projectile(dir));
@@ -74,7 +75,7 @@ public final class AttackPrefabs {
         attack.addComponent(new RotatedSpriteRenderer(16,16));
 
         //Despawner
-        //attack.addComponent(new AttackOutsideMapDespawner());
+        attack.addComponent(new AttackOutsideMapDespawner());
         attack.addComponent(new AttackDurationDespawner(cfg.stats.duration));
 
         //Movement

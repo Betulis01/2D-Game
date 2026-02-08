@@ -30,7 +30,6 @@ public class Health extends Component {
     }
 
     public void applyDamage(float dmg) {
-        System.out.println(current);
         if (dead) return;
         if (damageTimer > 0) return;
 

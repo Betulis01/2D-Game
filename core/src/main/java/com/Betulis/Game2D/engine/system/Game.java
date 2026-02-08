@@ -1,5 +1,6 @@
 package com.Betulis.Game2D.engine.system;
 
+import com.Betulis.Game2D.engine.render.DebugRender;
 import com.Betulis.Game2D.engine.utils.Assets;
 import com.Betulis.Game2D.game.input.InputBindings;
 import com.Betulis.Game2D.game.scenes.DeathValley;
@@ -14,6 +15,7 @@ public class Game extends ApplicationAdapter {
     private SpriteBatch batch;
     private Scene scene;
     private InputBindings input;
+    private DebugRender debugRender;
     private BitmapFont font;
     private Assets assets;
 
@@ -52,6 +54,7 @@ public class Game extends ApplicationAdapter {
     public void initSystems() {
         assets = new Assets();
         assets.load();
+        debugRender = new DebugRender(font, getAssets().getPixel());
     }
 
 
@@ -66,7 +69,7 @@ public class Game extends ApplicationAdapter {
         
         batch.begin();
         scene.render(batch); //render
-        font.draw(batch, "FPS: " + fps, 10, 20);
+        debugRender.render(scene, batch);
         batch.end();
     }
     

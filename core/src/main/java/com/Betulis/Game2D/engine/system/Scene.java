@@ -1,12 +1,14 @@
 package com.Betulis.Game2D.engine.system;
 
 import com.Betulis.Game2D.engine.camera.Camera;
+import com.Betulis.Game2D.engine.math.AABB;
 import com.Betulis.Game2D.engine.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 public abstract class Scene {
     protected TiledMap map;
+    protected AABB mapBounds;
     protected SnapshotArray<GameObject> objects;
     protected Game game;
     protected Camera camera;
@@ -68,6 +70,10 @@ public abstract class Scene {
 
     public TiledMap getMap() {
         return map;
+    }
+
+    public AABB getMapBounds() {
+        return mapBounds;
     }
 
     public SnapshotArray<GameObject> getObjects() {

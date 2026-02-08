@@ -15,7 +15,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class DeathValley extends Scene {
     private GameObject mapObject;
-    private AABB mapBounds;
 
     public DeathValley() {
         super(); 
@@ -41,21 +40,11 @@ public class DeathValley extends Scene {
         addObject(playerObj);
         
         //Slime
-        SlimePrefab slimePrefab = new SlimePrefab();
-        GameObject slimeObj0 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        addObject(slimeObj0);
-        // GameObject slimeObj1 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        // addObject(slimeObj1);
-        // GameObject slimeObj2 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        // addObject(slimeObj2);
-        // GameObject slimeObj3 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        // addObject(slimeObj3);
-        // GameObject slimeObj4 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        // addObject(slimeObj4);
-        // GameObject slimeObj5 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        // addObject(slimeObj5);
-        // GameObject slimeObj6 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-        // addObject(slimeObj6);
+        for (int i = 0; i < 10; i++) {
+            SlimePrefab slimePrefab = new SlimePrefab();
+            GameObject slimeObj0 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
+            addObject(slimeObj0);
+        }
 
         // Camera
         CameraPrefab cameraPrefab = new CameraPrefab();

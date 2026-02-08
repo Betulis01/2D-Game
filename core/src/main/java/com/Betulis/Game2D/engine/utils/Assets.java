@@ -12,6 +12,7 @@ public class Assets {
     public static final String slime_sheet = "mob/slime.png";
     public static final String fireball_fly = "abilities/fireball/fireball_fly.png";
     public static final String fireball_explode = "abilities/fireball/fireball_explode.png";
+    public static final String lightning_bolt = "abilities/lightning_bolt/lightning_bolt.png";
 
     // Runtime-created 1x1 white texture
     private Texture pixelTex;
@@ -22,6 +23,7 @@ public class Assets {
         manager.load(slime_sheet, Texture.class);
         manager.load(fireball_fly, Texture.class);
         manager.load(fireball_explode, Texture.class);
+        manager.load(lightning_bolt, Texture.class);
 
         manager.finishLoading();
 

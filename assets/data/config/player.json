@@ -1,0 +1,14 @@
+{
+  "id": "player",
+  "name": "Player",
+  "sprite": { "sheet": "/assets/player/orc8.png", "width": 32, "height": 32, "frames": 3, "directions": 8 },
+  "hurtbox": { "width": 10, "height": 20, "offsetX": 0, "offsetY": 2 },
+  "stats": {
+    "moveSpeed": 120.0,
+    "maxHealth": 100,
+    "attack": 10,
+    "defense": 5,
+    "attackSpeed": 1.2,
+    "critChance": 0.05
+  }
+}

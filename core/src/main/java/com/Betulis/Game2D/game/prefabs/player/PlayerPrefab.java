@@ -3,6 +3,8 @@ package com.Betulis.Game2D.game.prefabs.player;
 import com.Betulis.Game2D.engine.animation.AnimationClip;
 import com.Betulis.Game2D.engine.animation.AnimationDirector;
 import com.Betulis.Game2D.engine.animation.AnimationUpdater;
+import com.Betulis.Game2D.engine.config.ConfigLoader;
+import com.Betulis.Game2D.engine.config.EntityConfig;
 import com.Betulis.Game2D.engine.render.SpriteRenderer;
 import com.Betulis.Game2D.engine.system.GameObject;
 import com.Betulis.Game2D.engine.system.Transform;
@@ -19,35 +21,36 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class PlayerPrefab {
     public GameObject create(float x, float y, Texture asset) {
-        GameObject playerObj = new GameObject("Player");
+        EntityConfig cfg = new ConfigLoader().load("data/config/player.json");
+        GameObject playerObj = new GameObject("Player"); 
         
         //Transform
         playerObj.getComponent(Transform.class).setPosition(x, y);
 
         //Movement
         playerObj.addComponent(new PlayerController());
-        playerObj.addComponent(new EntityMover(100f));
+        playerObj.addComponent(new EntityMover(cfg.stats.moveSpeed));
 
         //Animation
-        SpriteSheetSlicer sheet = new SpriteSheetSlicer(asset, 32, 32, 3,8);
+        SpriteSheetSlicer sheet = new SpriteSheetSlicer(asset, cfg.sprite.width, cfg.sprite.height, 3,8);
         AnimationDirector director = new AnimationDirector();
         walkClips(sheet, director);
         idleClips(sheet, director);
         playerObj.addComponent(director);
         playerObj.addComponent(new AnimationUpdater());
-        playerObj.addComponent(new SpriteRenderer(32, 32));
+        playerObj.addComponent(new SpriteRenderer(cfg.sprite.width, cfg.sprite.height));
         playerObj.addComponent(new PlayerAnimation());
 
         //Collision
 
         //Health
-        playerObj.addComponent(new Health(100, 0));
+        playerObj.addComponent(new Health(cfg.stats.maxHealth, 0));
         
         //Combat
         playerObj.addComponent(new CombatState());
 
         //Hurtbox
-        playerObj.addComponent(new Hurtbox(10,20,0,2));
+        playerObj.addComponent(new Hurtbox(cfg.hurtbox.width,cfg.hurtbox.height,cfg.hurtbox.offsetX, cfg.hurtbox.offsetY));
 
         //Attack
         playerObj.addComponent(new AttackSpawner());

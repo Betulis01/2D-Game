@@ -10,6 +10,7 @@ import com.Betulis.Game2D.engine.system.GameObject;
 import com.Betulis.Game2D.engine.system.Transform;
 import com.Betulis.Game2D.engine.utils.SpriteSheetSlicer;
 import com.Betulis.Game2D.game.components.AABB.Hitbox;
+import com.Betulis.Game2D.game.components.combat.AttackDurationDespawner;
 import com.Betulis.Game2D.game.components.combat.DamageOnHit;
 import com.Betulis.Game2D.game.components.movement.EntityMover;
 import com.Betulis.Game2D.game.components.movement.Projectile;
@@ -27,7 +28,7 @@ public final class AttackPrefabs {
         attack.getTransform().setRotation(angle);
 
         //Animation
-        SpriteSheetSlicer sheet = new SpriteSheetSlicer(asset, cfg.sprite().width(), cfg.sprite().height(), 8,1);
+        SpriteSheetSlicer sheet = new SpriteSheetSlicer(asset, cfg.sprite.width, cfg.sprite.height, 8,1);
         AnimationClip fly = new AnimationClip(sheet, 0.2, 0, 0, 7, 0);
       
         AnimationDirector director = new AnimationDirector();
@@ -45,11 +46,11 @@ public final class AttackPrefabs {
         attack.addComponent(new EntityMover(500));
 
         //Hitbox
-        EntityConfig.Hitbox hi = cfg.hitbox();
-        attack.addComponent(new Hitbox(hi.width(),hi.height(),hi.offsetX(),hi.offsetY()));
+        EntityConfig.Hitbox hi = cfg.hitbox;
+        attack.addComponent(new Hitbox(hi.width,hi.height,hi.offsetX,hi.offsetY));
         
         //Damage
-        attack.addComponent(new DamageOnHit(owner, cfg.stats().damage()));
+        attack.addComponent(new DamageOnHit(owner, cfg.stats.damage));
 
         return attack;
     }
@@ -64,7 +65,7 @@ public final class AttackPrefabs {
         attack.getTransform().setRotation(angle);
 
         //Animation
-        SpriteSheetSlicer sheet = new SpriteSheetSlicer(asset, cfg.sprite().width(), cfg.sprite().height(), 8,1);
+        SpriteSheetSlicer sheet = new SpriteSheetSlicer(asset, cfg.sprite.width, cfg.sprite.height, 8,1);
         AnimationClip fly = new AnimationClip(sheet, 0.2, 0, 0, 7, 0);
         AnimationDirector director = new AnimationDirector();
         director.add("fly", fly);
@@ -74,18 +75,18 @@ public final class AttackPrefabs {
 
         //Despawner
         //attack.addComponent(new AttackOutsideMapDespawner());
-        //attack.addComponent(new AttackDurationDespawner(cfg.stats().duration()));
+        attack.addComponent(new AttackDurationDespawner(cfg.stats.duration));
 
         //Movement
         attack.addComponent(new Projectile(dir));
         attack.addComponent(new EntityMover(100));
 
         //Hitbox
-        EntityConfig.Hitbox hi = cfg.hitbox();
-        attack.addComponent(new Hitbox(hi.width(),hi.height(),hi.offsetX(),hi.offsetY()));
+        EntityConfig.Hitbox hi = cfg.hitbox;
+        attack.addComponent(new Hitbox(hi.width,hi.height,hi.offsetX,hi.offsetY));
         
         //Damage
-        attack.addComponent(new DamageOnHit(owner, cfg.stats().damage()));
+        attack.addComponent(new DamageOnHit(owner, cfg.stats.damage));
 
         return attack;
     }

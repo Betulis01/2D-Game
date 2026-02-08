@@ -1,6 +1,7 @@
 package com.Betulis.Game2D.game.input;
 
 import com.Betulis.Game2D.engine.camera.Camera;
+import com.Betulis.Game2D.engine.config.ConfigLoader;
 import com.Betulis.Game2D.engine.math.Vector2;
 import com.Betulis.Game2D.engine.system.Component;
 import com.Betulis.Game2D.engine.system.Transform;
@@ -23,12 +24,12 @@ public final class PlayerInput extends Component {
     public void update(float dt) {
         // Handle Lightning Bolt
         if (input.isPressed(InputBindings.Action.LIGHTNING_BOLT)) {
-            castAbility("/data/config/abilities/lightning_bolt.json");
+            castAbility("data/config/abilities/lightning_bolt.json");
         }
 
         // Handle Fireball
         if (input.isPressed(InputBindings.Action.FIREBALL)) {
-            castAbility("/data/config/abilities/fireball.json");
+            castAbility("data/config/abilities/fireball.json");
         }
     }
 
@@ -49,9 +50,8 @@ public final class PlayerInput extends Component {
         float dx = wx - t.getWorldX();
         float dy = wy - t.getWorldY();
 
-        //getGameObject().getComponent(AttackSpawner.class).setAttack(new ConfigLoader().load(configPath));
+        getGameObject().getComponent(AttackSpawner.class).setAttack(new ConfigLoader().load(configPath));
         
-        getGameObject().getComponent(AttackSpawner.class)
-            .tryAttack(dx, dy);
+        getGameObject().getComponent(AttackSpawner.class).tryAttack(dx, dy);
     }
 }

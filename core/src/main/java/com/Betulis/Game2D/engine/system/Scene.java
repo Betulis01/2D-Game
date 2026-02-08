@@ -1,10 +1,12 @@
 package com.Betulis.Game2D.engine.system;
 
 import com.Betulis.Game2D.engine.camera.Camera;
+import com.Betulis.Game2D.engine.tiled.TiledMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 public abstract class Scene {
+    protected TiledMap map;
     protected SnapshotArray<GameObject> objects;
     protected Game game;
     protected Camera camera;
@@ -28,8 +30,8 @@ public abstract class Scene {
     /* RENDER AND UPDATE */
     public void update(float dt) {
         GameObject[] items = objects.begin(); // Create the snapshot
-        
-        for (int i = 0; i < objects.size; i++) { // Iterate using a standard for-loop (SnapshotArray is optimized for this)
+        int n = objects.size; // size of the snapshot at begin()
+        for (int i = 0; i < n; i++) { // Iterate using a standard for-loop (SnapshotArray is optimized for this)
             items[i].update(dt);
         }
         objects.end(); // Commit any additions/removals that happened during the loop
@@ -37,7 +39,8 @@ public abstract class Scene {
 
     public void render(SpriteBatch batch) {
         GameObject[] items = objects.begin();
-        for (int i = 0; i < objects.size; i++) {
+        int n = objects.size;  
+        for (int i = 0; i < n; i++) {
             items[i].render(batch);
         }
         objects.end();
@@ -61,6 +64,10 @@ public abstract class Scene {
             }
         }
         return null;
+    }
+
+    public TiledMap getMap() {
+        return map;
     }
 
     public SnapshotArray<GameObject> getObjects() {

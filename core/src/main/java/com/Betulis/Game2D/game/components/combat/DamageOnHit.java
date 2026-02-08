@@ -14,9 +14,9 @@ import com.badlogic.gdx.utils.SnapshotArray;
 
 public class DamageOnHit extends Component {
     private final GameObject owner;
-    private final double dmg;
+    private final float dmg;
 
-    public DamageOnHit(GameObject owner, double dmg) {
+    public DamageOnHit(GameObject owner, float dmg) {
         this.owner = owner;
         this.dmg = dmg;
     }

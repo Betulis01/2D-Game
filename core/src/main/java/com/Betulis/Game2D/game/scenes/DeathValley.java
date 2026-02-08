@@ -7,7 +7,6 @@ import com.Betulis.Game2D.engine.render.TileMapRenderer;
 import com.Betulis.Game2D.engine.system.GameObject;
 import com.Betulis.Game2D.engine.system.Scene;
 import com.Betulis.Game2D.engine.system.Transform;
-import com.Betulis.Game2D.engine.tiled.TiledMap;
 import com.Betulis.Game2D.engine.tiled.TiledMapLoader;
 import com.Betulis.Game2D.game.prefabs.camera.CameraPrefab;
 import com.Betulis.Game2D.game.prefabs.mobs.SlimePrefab;
@@ -15,7 +14,6 @@ import com.Betulis.Game2D.game.prefabs.player.PlayerPrefab;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class DeathValley extends Scene {
-    private TiledMap map;
     private GameObject mapObject;
     private AABB mapBounds;
 

@@ -119,7 +119,8 @@ public class Camera extends Component {
     }
 
     public float screenToWorldY(float screenY) {
-        return screenY / zoom + (transform.getWorldY() - screenHeight / (2 * zoom));
+        float flipped = screenHeight - screenY; // screenHeight should match window/viewport height
+        return flipped / zoom + (transform.getWorldY() - screenHeight / (2f * zoom));
     }
 
     /* UTIL */

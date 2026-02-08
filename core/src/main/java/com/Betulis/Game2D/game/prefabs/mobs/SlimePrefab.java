@@ -14,6 +14,7 @@ import com.Betulis.Game2D.game.components.combat.CombatState;
 import com.Betulis.Game2D.game.components.AABB.Hurtbox;
 import com.Betulis.Game2D.game.components.movement.EntityMover;
 import com.Betulis.Game2D.game.components.movement.SlimeMovement;
+import com.Betulis.Game2D.game.components.render.HealthRenderer;
 import com.Betulis.Game2D.game.components.stats.Health;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -44,6 +45,7 @@ public class SlimePrefab {
 
         //Health
         slimeObj.addComponent(new Health(cfg.stats.maxHealth,0));
+        slimeObj.addComponent(new HealthRenderer());
 
         //Combat
         slimeObj.addComponent(new CombatState());

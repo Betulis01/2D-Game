@@ -41,8 +41,8 @@ public final class EntityMover extends Component {
         float halfH = sprite.getHeight() * 0.5f;
 
         
-        float mapWidth  = 100*32;//getScene().getMap().getWidth();
-        float mapHeight = 100*32;//getScene().getMap().getHeight();
+        float mapWidth  = getScene().getMap().getWidth();
+        float mapHeight = getScene().getMap().getHeight();
 
         //if (getGameObject().getComponent(Hitbox.class) == null) {
             // Clamp the CENTER

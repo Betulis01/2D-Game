@@ -3,15 +3,15 @@ package com.Betulis.Game2D.game.components.stats;
 import com.Betulis.Game2D.engine.system.Component;
 
 public class Health extends Component {
-    private final double max;
-    private double current;
+    private final float max;
+    private float current;
     private boolean dead;
 
-    private final double damageCooldown;
-    private double damageTimer;
+    private final float damageCooldown;
+    private float damageTimer;
 
 
-    public Health(double max, double damageCooldown) {
+    public Health(float max, float damageCooldown) {
         this.max = max; 
         this.current = max;
         this.damageCooldown = damageCooldown;  
@@ -29,7 +29,7 @@ public class Health extends Component {
         }
     }
 
-    public void applyDamage(double dmg) {
+    public void applyDamage(float dmg) {
         System.out.println(current);
         if (dead) return;
         if (damageTimer > 0) return;
@@ -43,12 +43,12 @@ public class Health extends Component {
         }
     }
 
-    public void heal(double heal) {
+    public void heal(float heal) {
         if (dead) return;
         current = Math.min(max, current + heal);
     }
 
-    public void regenerate(double dt, double regen) {
+    public void regenerate(float dt, float regen) {
         if (dead) return;
     }
 
@@ -65,11 +65,11 @@ public class Health extends Component {
 
     public boolean isAlive() { return current > 0; }
     
-    public double getHealth() {
+    public float getHealth() {
         return current;
     }
 
-    public double getMaxHealth() {
+    public float getMaxHealth() {
         return max;
     }
     

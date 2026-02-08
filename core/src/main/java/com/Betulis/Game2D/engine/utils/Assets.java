@@ -1,29 +1,51 @@
 package com.Betulis.Game2D.engine.utils;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Assets {
     private final AssetManager manager = new AssetManager();
 
-    // Define constants for paths to avoid typos
     public static final String orc_sheet = "player/orc8.png";
     public static final String slime_sheet = "mob/slime.png";
+    public static final String fireball_fly = "abilities/fireball/fireball_fly.png";
+    public static final String fireball_explode = "abilities/fireball/fireball_explode.png";
 
+    // Runtime-created 1x1 white texture
+    private Texture pixelTex;
+    private TextureRegion pixelRegion;
 
     public void load() {
         manager.load(orc_sheet, Texture.class);
         manager.load(slime_sheet, Texture.class);
-        // Add more assets here
-        
-        manager.finishLoading(); // Blocks until everything is loaded
+        manager.load(fireball_fly, Texture.class);
+        manager.load(fireball_explode, Texture.class);
+
+        manager.finishLoading();
+
+        // Create the pixel AFTER OpenGL is available (load() should be called after app start)
+        Pixmap pm = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pm.setColor(1, 1, 1, 1);
+        pm.fill();
+        pixelTex = new Texture(pm);
+        pm.dispose();
+
+        pixelRegion = new TextureRegion(pixelTex);
     }
 
     public Texture getTexture(String path) {
         return manager.get(path, Texture.class);
     }
 
+    /** A 1x1 white region for drawing colored rectangles via SpriteBatch tinting. */
+    public TextureRegion getPixel() {
+        return pixelRegion;
+    }
+
     public void dispose() {
         manager.dispose();
+        if (pixelTex != null) pixelTex.dispose();
     }
 }

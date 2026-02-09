@@ -42,8 +42,8 @@ public class DeathValley extends Scene {
         //Slime
         for (int i = 0; i < 10; i++) {
             SlimePrefab slimePrefab = new SlimePrefab();
-            GameObject slimeObj0 = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
-            addObject(slimeObj0);
+            GameObject slimeObj = slimePrefab.create(200,200,getGame().getAssets().getTexture("mob/slime.png"));
+            addObject(slimeObj);
         }
 
         // Camera

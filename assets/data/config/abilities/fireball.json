@@ -1,10 +1,11 @@
 {
   "id": "fireball",
   "name": "Fireball",
-  "sprite": { "sheet": "/assets/spells/fireball.png", "width": 16, "height": 16, "frames": 8, "directions": 1 },
+  "sprite": { "sheet": "abilities/fireball/fireball.png", "width": 16, "height": 16, "frames": 8, "directions": 1 },
   "collision": { "width": 2, "height": 2, "offsetX": 0, "offsetY": 0 },
   "hitbox": { "width": 4, "height": 4, "offsetX": 0, "offsetY": 0 },
   "stats": {
+    "moveSpeed": 250,
     "damage": 2,
     "cooldown": 0,
     "duration": 1

@@ -44,7 +44,7 @@ public final class AttackPrefabs {
 
         //Movement
         attack.addComponent(new Projectile(dir));
-        attack.addComponent(new EntityMover(500));
+        attack.addComponent(new EntityMover(cfg.stats.moveSpeed));
 
         //Hitbox
         EntityConfig.Hitbox hi = cfg.hitbox;
@@ -80,7 +80,7 @@ public final class AttackPrefabs {
 
         //Movement
         attack.addComponent(new Projectile(dir));
-        attack.addComponent(new EntityMover(100));
+        attack.addComponent(new EntityMover(cfg.stats.moveSpeed));
 
         //Hitbox
         EntityConfig.Hitbox hi = cfg.hitbox;
